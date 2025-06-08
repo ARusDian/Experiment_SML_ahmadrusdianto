@@ -1,6 +1,6 @@
 # .github/workflows/preprocess.yml
 
-name: Preprocess Dataset
+name: Preprocess Dataset Automatically
 
 on:
   push:
@@ -16,22 +16,30 @@ jobs:
     - name: 📥 Checkout repository
       uses: actions/checkout@v3
 
-    - name: 🐍 Setup Python
+    - name: 🐍 Setup Python 3.10
       uses: actions/setup-python@v4
       with:
         python-version: '3.10'
 
-    - name: 🛠️ Install dependencies
+    - name: 📦 Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install -r preprocessing/requirements.txt
 
-    - name: ⚙️ Jalankan preprocessing
+    - name: ⚙️ Jalankan preprocessing otomatis
       run: |
         python preprocessing/automate_ahmadrusdianto.py
 
-    - name: 💾 Upload artefak hasil preprocessing
+    - name: 💾 Upload hasil sebagai artefak (opsional)
       uses: actions/upload-artifact@v3
       with:
         name: preprocessed-dataset
         path: preprocessing/models/
+
+    - name: 📝 Commit dan Push hasil preprocessing
+      run: |
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+        git add preprocessing/models/*
+        git diff --staged --quiet || git commit -m "Advance: Update preprocessed data & models via Actions"
+        git push
