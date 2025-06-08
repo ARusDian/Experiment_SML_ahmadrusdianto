@@ -31,7 +31,7 @@ jobs:
         python preprocessing/automate_ahmadrusdianto.py
 
     - name: 💾 Upload hasil sebagai artefak (opsional)
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: preprocessed-dataset
         path: preprocessing/models/
