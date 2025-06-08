@@ -4,9 +4,9 @@ name: Preprocess Dataset Automatically
 
 on:
   push:
-    branches: [main]
+    branches: [master]
   pull_request:
-    branches: [main]
+    branches: [master]
 
 jobs:
   preprocess:
