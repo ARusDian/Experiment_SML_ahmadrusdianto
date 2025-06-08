@@ -76,7 +76,7 @@ def save_artifacts(
         (X_train, X_test, y_train, y_test),
         os.path.join(output_dir, "data_preprocessed.joblib"),
     )
-
+    
     print(f"✅ Semua artefak disimpan ke: {output_dir}")
 
 
